@@ -47,6 +47,8 @@ class IncomingProductsResource extends Resource
                 Forms\Components\Textarea::make('notes')
                     ->label('Notes')
                     ->nullable(),
+                Forms\Components\Hidden::make('inventory_type')
+                    ->default('in'),
             ]);
     }
 
