@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\IncomingProductsResource\Pages;
-use App\Filament\Resources\IncomingProductsResource\RelationManagers;
+use App\Filament\Resources\OutcomingProductsResource\Pages;
+use App\Filament\Resources\OutcomingProductsResource\RelationManagers;
 use App\Models\Product;
 use App\Models\ProductInventory;
 use Filament\Forms;
@@ -14,13 +14,13 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class IncomingProductsResource extends Resource
+class OutcomingProductsResource extends Resource
 {
     protected static ?string $model = ProductInventory::class;
 
-    protected static ?string $pluralModelLabel = 'Produk Masuk';
+    protected static ?string $pluralModelLabel = 'Produk Keluar';
 
-    protected static ?string $navigationLabel = 'Produk Masuk';
+    protected static ?string $navigationLabel = 'Produk Keluar';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -47,6 +47,8 @@ class IncomingProductsResource extends Resource
                 Forms\Components\Textarea::make('notes')
                     ->label('Notes')
                     ->nullable(),
+                Forms\Components\Hidden::make('inventory_type')
+                    ->default('out'),
             ]);
     }
 
@@ -59,7 +61,7 @@ class IncomingProductsResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('stock')
-                    ->label('Stok')
+                    ->label('Jumlah Stok')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -91,9 +93,14 @@ class IncomingProductsResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListIncomingProducts::route('/'),
-            'create' => Pages\CreateIncomingProducts::route('/create'),
-            'edit' => Pages\EditIncomingProducts::route('/{record}/edit'),
+            'index' => Pages\ListOutcomingProducts::route('/'),
+            'create' => Pages\CreateOutcomingProducts::route('/create'),
+            'edit' => Pages\EditOutcomingProducts::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('inventory_type', 'out');
     }
 }

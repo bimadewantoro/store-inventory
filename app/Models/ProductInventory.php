@@ -14,6 +14,7 @@ class ProductInventory extends Model
         'stock',
         'is_good_condition',
         'notes',
+        'inventory_type',
     ];
 
     public function product()
