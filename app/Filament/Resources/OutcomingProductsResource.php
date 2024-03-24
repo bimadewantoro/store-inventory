@@ -64,6 +64,18 @@ class OutcomingProductsResource extends Resource
                     ->label('Stok Keluar')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('is_good_condition')
+                    ->label('Kondisi Barang')
+                    ->getStateUsing(function ($record) {
+                        return $record->is_good_condition ? 'BAIK' : 'TIDAK BAIK';
+                    })
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'BAIK' => 'success',
+                        'TIDAK BAIK' => 'danger',
+                    })
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Ditambahkan Pada')
                     ->searchable()
