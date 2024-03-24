@@ -14,4 +14,9 @@ class Product extends Model
         'product_code',
         'description',
     ];
+
+    public function inventory()
+    {
+        return $this->hasOne(ProductInventory::class);
+    }
 }
