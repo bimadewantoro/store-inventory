@@ -17,7 +17,13 @@ class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $pluralModelLabel = 'Produk';
+
+    protected static ?string $navigationLabel = 'Produk';
+
+    protected static ?string $navigationIcon = 'heroicon-o-archive-box';
 
     public static function form(Form $form): Form
     {
@@ -41,13 +47,19 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
+                    ->label('Produk')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('product_code')
-                    ->label('Product Code')
+                    ->label('Kode Produk')
                     ->searchable()
-                    ->sortable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('total_stock')
+                    ->label('Total Stok'),
+                Tables\Columns\TextColumn::make('total_good_stock')
+                    ->label('Kondisi Baik'),
+                Tables\Columns\TextColumn::make('total_bad_stock')
+                    ->label('Kondisi Tidak Baik'),
             ])
             ->filters([
                 //
