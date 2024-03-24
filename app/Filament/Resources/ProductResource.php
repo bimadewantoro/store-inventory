@@ -17,7 +17,7 @@ class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
-    protected static ?string $pluralModelLabel = 'Tambah Produk';
+    protected static ?string $pluralModelLabel = 'Produk';
 
     protected static ?string $navigationLabel = 'Produk';
 
@@ -45,13 +45,19 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
+                    ->label('Produk')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('product_code')
-                    ->label('Product Code')
+                    ->label('Kode Produk')
                     ->searchable()
-                    ->sortable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('total_stock')
+                    ->label('Total Stok'),
+                Tables\Columns\TextColumn::make('total_good_stock')
+                    ->label('Kondisi Bagus'),
+                Tables\Columns\TextColumn::make('total_bad_stock')
+                    ->label('Kondisi Rusak'),
             ])
             ->filters([
                 //
