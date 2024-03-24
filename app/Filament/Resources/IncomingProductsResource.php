@@ -18,11 +18,13 @@ class IncomingProductsResource extends Resource
 {
     protected static ?string $model = ProductInventory::class;
 
+    protected static ?int $navigationSort = 2;
+
     protected static ?string $pluralModelLabel = 'Produk Masuk';
 
     protected static ?string $navigationLabel = 'Produk Masuk';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-arrow-down-circle';
 
     public static function form(Form $form): Form
     {

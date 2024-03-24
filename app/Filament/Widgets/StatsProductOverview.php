@@ -17,15 +17,15 @@ class StatsProductOverview extends BaseWidget
                 ->icon('heroicon-o-archive-box'),
             Stat::make('Total Stok Produk', ProductInventory::where('inventory_type', 'in')->sum('stock') - ProductInventory::where('inventory_type', 'out')->sum('stock'))
                 ->description('Total stok produk yang tersedia')
-                ->icon('heroicon-o-chart-bar-square'),
+                ->icon('heroicon-o-plus-circle'),
             Stat::make('Total Stok Produk Masuk', ProductInventory::where('inventory_type', 'in')->sum('stock'))
                 ->description('Total stok produk yang masuk')
-                ->icon('heroicon-o-arrow-uturn-down')
+                ->icon('heroicon-o-arrow-down-circle')
                 ->color('success')
                 ->descriptionIcon('heroicon-m-arrow-down'),
             Stat::make('Total Stok Produk Keluar', ProductInventory::where('inventory_type', 'out')->sum('stock'))
                 ->description('Total stok produk yang keluar')
-                ->icon('heroicon-o-arrow-uturn-up')
+                ->icon('heroicon-o-arrow-up-circle')
                 ->color('danger')
                 ->descriptionIcon('heroicon-m-arrow-up'),
         ];
