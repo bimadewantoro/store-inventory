@@ -55,9 +55,9 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('total_stock')
                     ->label('Total Stok'),
                 Tables\Columns\TextColumn::make('total_good_stock')
-                    ->label('Kondisi Bagus'),
+                    ->label('Kondisi Baik'),
                 Tables\Columns\TextColumn::make('total_bad_stock')
-                    ->label('Kondisi Rusak'),
+                    ->label('Kondisi Tidak Baik'),
             ])
             ->filters([
                 //
