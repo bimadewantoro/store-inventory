@@ -61,7 +61,7 @@ class OutcomingProductsResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('stock')
-                    ->label('Jumlah Stok')
+                    ->label('Stok Keluar')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

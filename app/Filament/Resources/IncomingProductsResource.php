@@ -59,7 +59,7 @@ class IncomingProductsResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('stock')
-                    ->label('Stok')
+                    ->label('Stok Masuk')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -95,5 +95,10 @@ class IncomingProductsResource extends Resource
             'create' => Pages\CreateIncomingProducts::route('/create'),
             'edit' => Pages\EditIncomingProducts::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('inventory_type', 'in');
     }
 }
