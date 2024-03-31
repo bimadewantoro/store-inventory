@@ -31,18 +31,7 @@ class ProductResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->label('Nama Barang')
-                    ->required(),
-                Forms\Components\TextInput::make('product_code')
-                    ->label('Kode Barang')
-                    ->helperText('Pastikan kode barang belum pernah digunakan sebelumnya.')
-                    ->unique()
-                    ->validationMessages([
-                        'unique' => 'Kode barang sudah pernah digunakan sebelumnya.',
-                    ])
-                    ->required(),
-                Forms\Components\RichEditor::make('description')
-                    ->label('Deskripsi Barang')
-                    ->columnSpan(2),
+                    ->required()
             ]);
     }
 
@@ -52,10 +41,6 @@ class ProductResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Produk')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('product_code')
-                    ->label('Kode Produk')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('total_stock')
