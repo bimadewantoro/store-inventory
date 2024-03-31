@@ -35,6 +35,10 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('product_code')
                     ->label('Kode Barang')
                     ->helperText('Pastikan kode barang belum pernah digunakan sebelumnya.')
+                    ->unique()
+                    ->validationMessages([
+                        'unique' => 'Kode barang sudah pernah digunakan sebelumnya.',
+                    ])
                     ->required(),
                 Forms\Components\RichEditor::make('description')
                     ->label('Deskripsi Barang')
