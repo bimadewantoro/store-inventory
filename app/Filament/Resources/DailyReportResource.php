@@ -35,6 +35,19 @@ class DailyReportResource extends Resource
                     ->label('Stok')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('keterangan')
+                    ->label('Jenis')
+                    ->getStateUsing(function (ProductInventory $record) {
+                        return $record->inventory_type === 'in' ? 'Stok Masuk' : 'Stok Keluar';
+                    })
+                    ->color(fn (string $state): string => match ($state) {
+                        'Stok Masuk' => 'warning',
+                        'Stok Keluar' => 'gray',
+                    })
+                    ->icon(fn (string $state): string => match ($state) {
+                        'Stok Masuk' => 'heroicon-o-arrow-down-circle',
+                        'Stok Keluar' => 'heroicon-o-arrow-up-circle',
+                    }),
                 Tables\Columns\TextColumn::make('is_good_condition')
                     ->label('Kondisi Barang')
                     ->getStateUsing(function ($record) {
@@ -47,20 +60,9 @@ class DailyReportResource extends Resource
                     })
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('keterangan')
+                Tables\Columns\TextColumn::make('notes')
                     ->label('Keterangan')
-                    ->getStateUsing(function (ProductInventory $record) {
-                        return $record->inventory_type === 'in' ? 'Stok Masuk' : 'Stok Keluar';
-                    })
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'Stok Masuk' => 'success',
-                        'Stok Keluar' => 'danger',
-                    })
-                    ->icon(fn (string $state): string => match ($state) {
-                        'Stok Masuk' => 'heroicon-o-arrow-down-circle',
-                        'Stok Keluar' => 'heroicon-o-arrow-up-circle',
-                    })
+                    ->searchable(),
             ])
             ->filters([
                 //
