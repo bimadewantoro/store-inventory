@@ -22,9 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('product_code')->unique();
-            $table->string('description')->nullable();
-        });
+        //
     }
 };
