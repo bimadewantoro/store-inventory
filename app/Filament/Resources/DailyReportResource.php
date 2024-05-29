@@ -21,7 +21,7 @@ class DailyReportResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
 
-    protected static ?string $navigationLabel = 'Laporan Harian';
+    protected static ?string $navigationLabel = 'Laporan Produk';
 
     public static function table(Table $table): Table
     {
