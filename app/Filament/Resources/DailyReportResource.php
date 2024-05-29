@@ -31,7 +31,14 @@ class DailyReportResource extends Resource
                     ->label('Produk')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('stock')
+                    Tables\Columns\TextColumn::make('created_at')
+                    ->label('Tanggal')
+                    ->getStateUsing(function($record) {
+                        return Carbon::parse($record->created_at)->format('d-m-Y');
+                    })
+                    ->searchable()
+                    ->sortable(),
+                    Tables\Columns\TextColumn::make('stock')
                     ->label('Stok')
                     ->searchable()
                     ->sortable(),
@@ -97,14 +104,14 @@ class DailyReportResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()
-            ->whereDate('created_at', now()->format('Y-m-d'));
+        return parent::getEloquentQuery();
+            // ->whereDate('created_at', now()->format('Y-m-d'));
     }
 
     public static function getPluralModelLabel(): string
     {
-        $today = Carbon::now()->format('d M Y');
+        // $today = Carbon::now()->format('d M Y');
 
-        return "Laporan Harian - $today";
+        return "Laporan Produk";
     }
 }
