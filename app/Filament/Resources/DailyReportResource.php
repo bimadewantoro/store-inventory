@@ -72,7 +72,6 @@ class DailyReportResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                //
             ])
             ->actions([])
             ->bulkActions([]);
@@ -105,13 +104,10 @@ class DailyReportResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery();
-            // ->whereDate('created_at', now()->format('Y-m-d'));
     }
 
     public static function getPluralModelLabel(): string
     {
-        // $today = Carbon::now()->format('d M Y');
-
         return "Laporan Produk";
     }
 }
